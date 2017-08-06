@@ -1,2 +1,2 @@
-# slush-firepoly-app-builder
+# slush-polyapp-builder
 A slush generator that builds a Polymer PWA that uses Firebase database, storage, functions, and hosting.
