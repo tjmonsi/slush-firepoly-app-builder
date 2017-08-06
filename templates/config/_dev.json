@@ -1,79 +1,60 @@
 {
   "app": {
-    "title": "Polyblog App",
-    "shortTitle": "Polyblog",
-    "description": "Polyblog App System Description",
-    "baseHref": "/",
-    "analytics": "UA-103026201-1",
-    "firebaseVersion": "4.2.0",
+    "title": "<%= appName %>",
+    "shortTitle": "<%= appNameSlug %>",
+    "description": "<%= appDescription %>",
+    "baseHref": "<%= appBaseHref %>",
+    "analytics": "<%= appGoogleAnalytics %>",
+    "firebaseVersion": "<%= appFirebaseVersion %>",
     "database": "dev",
     "waitBeforeFetchingSameURLInRest": 60,
-    "sentryUrl": "https://89e426779a3a4867abe48f06e05be299@sentry.io/200095",
-    "firebaseConfig": [
-      {
-        "apiKey": "AIzaSyDdpZgjWiBnIo4B8lPYwUygukV2YfAuiLk",
-        "authDomain": "tjkpm-site-yng.firebaseapp.com",
-        "databaseURL": "https://tjkpm-site-yng.firebaseio.com",
-        "projectId": "tjkpm-site-yng",
-        "storageBucket": "tjkpm-site-yng.appspot.com",
-        "messagingSenderId": "970625793163"
-      }
-    ]
+    "sentryUrl": "<%= appSentryUrl %>",
+    "appVersion": "<%= appVersion %>",
+    "firebaseConfig": []
   },
   "theme": {
-    "src": "src/modules/default-theme",
+    "src": "modules/default-theme",
     "ignoreComponents": []
   },
   "modules": {
-    "not-authorized-page": true,
-    "not-found-page": true,
-    "home-page": true,
     "default-theme": true,
-    "project-layout": true,
-    "project-icons": true,
     "user-data": true,
     "permission-data": true,
-    "example-pages": true
+    "example-module": true
   },
   "fragments": {
-    "home-page": "modules/home-page/pages/home-page.html",
-    "not-found-page": "modules/not-found-page/pages/not-found-page.html",
-    "not-authorized-page": "modules/not-authorized-page/pages/not-authorized-page.html",
-    "project-app-header": "modules/project-layout/components/project-app-header.html",
-    "project-app-drawer": "modules/project-layout/components/project-app-drawer.html"
+    "example-home-page": "modules/example-module/pages/example-home-page.html",
+    "example-not-found-page": "modules/example-module/pages/example-not-found-page.html",
+    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page.html",
+    "example-app-header": "modules/example-module/components/example-app-header.html",
+    "example-app-drawer": "modules/example-module/components/example-app-drawer.html"
   },
   "routing": {
-    "/": "home-page-2",
-    "/p/:id": "home-page"
+    "/": "example-home-page"
   },
   "httpCodes": {
-    "not-found": "not-found-page",
-    "not-authorized": "not-authorized-page"
+    "not-found": "example-not-found-page",
+    "not-authorized": "example-not-authorized-page"
   },
-  "shellComponents": {
-    "project-app-header": {
-      ".order": 0,
-      ".header": true,
-      "className": "class-1",
-      "activate": true
+  "shellComponents": [
+    {
+      "node": "example-app-header",
+      "header": true,
+      "activate": true,
+      "attrs": []
     },
-    "project-app-drawer": {
-      ".order": 1,
-      ".drawer": true,
-      "className": "drawer",
-      "activate": true
+    {
+      "node": "example-app-drawer",
+      "drawer": true,
+      "activate": true,
+      "attrs": []
     }
-  },
+  ],
   "serviceWorker": {
     "globIgnores": [],
     "runtimeCaching": []
   },
   "hosting": {
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "rewrites": []
   }
 }

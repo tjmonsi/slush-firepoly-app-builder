@@ -5,7 +5,7 @@ const install = require('gulp-install')
 const _ = require('underscore.string')
 const inquirer = require('inquirer')
 const data = require('../utils/data')
-const prompts = require('../utils.questions')
+const prompts = require('../utils/questions')
 
 gulp.task('create-app', function (done) {
     //Ask

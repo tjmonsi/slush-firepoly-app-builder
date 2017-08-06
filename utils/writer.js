@@ -1,3 +1,8 @@
+const gulp = require('gulp')
+const conflict = require('gulp-conflict')
+const template = require('gulp-template')
+const rename = require('gulp-rename')
+
 module.exports = (src, data, dest, done) => {
   src.pipe(template(data))
   .pipe(rename(function (file) {
