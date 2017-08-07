@@ -9,7 +9,7 @@ gulp.task('default', (done) => {
     'create-dev-config',
     'create-package',
     'create-bower',
-    'copy-core-modules',
+    'copy-core-src',
     'install-deps',
     done)
 });
