@@ -9,7 +9,15 @@
 'use strict'
 
 const fs = require('fs')
-const tasks = fs.readdirSync(__dirname + '/tasks')
+const tasks = []
+const folders = fs.readdirSync(__dirname + '/tasks')
+
+folders.forEach((folder) => {
+  const files = fs.readdirSync(__dirname + '/tasks/' + folder)
+  files.forEach((file) => {
+    tasks.push(folder + '/' + file)
+  })
+})
 
 tasks.forEach((task) => {
   require(`${__dirname}/tasks/${task}`)
