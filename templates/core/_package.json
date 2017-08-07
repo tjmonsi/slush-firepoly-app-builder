@@ -12,10 +12,10 @@
     "url": "<%= appRepo %>"
   },
   "bugs": {
-    "url": "https://github.com/<%= userName %><%= appNameSlug %>/issues"
+    "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/issues"
   },
   "scripts": {
-    "test": "xvfb-run polymer test --skip-plugin sauce",
+    "test": "xvfb-run wct test --skip-plugin sauce",
     "start": "gulp",
     "serve": "firebase serve",
     "serve-c9": "firebase serve -p $PORT -o $IP",
@@ -57,7 +57,8 @@
     "uppercamelcase": "^3.0.0",
     "workbox-build": "^1.2.0",
     "workbox-routing": "^1.1.0",
-    "workbox-sw": "^1.1.0"
+    "workbox-sw": "^1.1.0",
+    "web-component-tester": "^6.0.0"
   },
   "standard": {
     "globals": [

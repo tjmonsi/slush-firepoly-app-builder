@@ -4,5 +4,9 @@ const gulp = require('gulp')
 const runSequence = require('run-sequence')
 
 gulp.task('default', (done) => {
-  runSequence('create-app', 'create-dev-config', done)
+  runSequence(
+    'create-app',
+    'create-dev-config',
+    'create-package',
+    done)
 });

@@ -31,8 +31,10 @@
     "gulp-template": "^0.1.1",
     "iniparser": "^1.0.5",
     "inquirer": "^0.8.0",
+    "lodash": "^4.17.4",
     "run-sequence": "^2.1.0",
     "rxjs": "^5.4.2",
+    "slugify": "^1.1.0",
     "slush": ">=1.0.0",
     "underscore.string": "^2.3.3"
   },
