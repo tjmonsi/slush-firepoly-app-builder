@@ -1,40 +1,44 @@
 {
-    "name": "slush-polyapp-builder",
-    "description": "A slush generator that builds a Polymer PWA that uses Firebase database, storage, functions, and hosting.",
-    "version": "0.0.1",
-    "homepage": "https://github.com/tjmonsi/slush-polyapp-builder",
-    "author": {
-        "name": "Toni-Jan Keith Monserrat",
-        "email": "tjmonsi@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/tjmonsi/slush-polyapp-builder.git"
-    },
-    "bugs": {
-        "url": "https://github.com/tjmonsi/slush-polyapp-builder/issues"
-    },
-    "license": "MIT",
-    "main": "slushfile.js",
-    "engines": {
-        "node": ">= 0.10.26",
-        "npm": ">=1.4.3"
-    },
-    "scripts": {
-        "test": "echo \"No tests\""
-    },
-    "dependencies": {
-        "slush": ">=1.0.0",
-        "gulp": "^3.6.2",
-        "gulp-template": "^0.1.1",
-        "gulp-install": "^0.1.4",
-        "gulp-conflict": "^0.1.1",
-        "gulp-rename": "^1.2.0",
-        "underscore.string": "^2.3.3",
-        "inquirer": "^0.8.0",
-        "iniparser": "^1.0.5"
-    },
-    "keywords": [
-        "slushgenerator"
-    ]
+  "name": "slush-polyapp-builder",
+  "description": "A slush generator that builds a Polymer PWA that uses Firebase database, storage, functions, and hosting.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tjmonsi/slush-polyapp-builder",
+  "author": {
+    "name": "Toni-Jan Keith Monserrat",
+    "email": "tjmonsi@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tjmonsi/slush-polyapp-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tjmonsi/slush-polyapp-builder/issues"
+  },
+  "license": "MIT",
+  "main": "slushfile.js",
+  "engines": {
+    "node": ">= 0.10.26",
+    "npm": ">=1.4.3"
+  },
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "dependencies": {
+    "gulp": "^3.6.2",
+    "gulp-conflict": "^0.1.1",
+    "gulp-install": "^0.1.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-template": "^0.1.1",
+    "iniparser": "^1.0.5",
+    "inquirer": "^0.8.0",
+    "lodash": "^4.17.4",
+    "run-sequence": "^2.1.0",
+    "rxjs": "^5.4.2",
+    "slugify": "^1.1.0",
+    "slush": ">=1.0.0",
+    "underscore.string": "^2.3.3"
+  },
+  "keywords": [
+    "slushgenerator"
+  ]
 }

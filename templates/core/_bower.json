@@ -1,0 +1,27 @@
+{
+  "name": "<%= appNameSlug %>",
+  "description": "<%= appDescription %>",
+  "main": "dist/public/index.html",
+  "authors": [
+    "<%= authorName %>"
+  ],
+  "license": "MIT",
+  "homepage": "<%= appRepo %>",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.1",
+    "polymer-redux": "^1.0.1"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.1",
+    "web-component-tester": "^6.0.0"
+  }
+}
