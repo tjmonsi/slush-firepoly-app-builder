@@ -1,1 +1,1 @@
-module.exports = ['copy-core-modules', 'copy-core-opts', 'copy-core-scripts', 'copy-core-root', 'copy-core-shell', 'copy-core-service-worker']
+module.exports = ['update-core-modules', 'update-core-opts', 'update-core-scripts', 'update-core-root', 'update-core-shell', 'update-core-service-worker']

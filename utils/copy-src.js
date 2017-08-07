@@ -1,1 +1,1 @@
-module.exports = ['copy-src-modules', 'copy-src-opts', 'copy-src-scripts', 'copy-src-rules', 'copy-src-service-worker']
+module.exports = ['update-src-modules', 'update-src-opts', 'update-src-scripts', 'update-src-rules', 'update-src-service-worker']
