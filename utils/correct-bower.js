@@ -15,7 +15,12 @@ const correctBowerPath = (dest) => {
       return cb(null, file)
     }
     if (!file.isDirectory()) {
-      const newPath = process.cwd() + '/' + dest.replace('./', '') + file.path.replace(process.cwd(), '').replace('/core/modules', '').replace('/src/modules', '')
+      const newPath = process.cwd() + '/' + dest.replace('./', '') + file.path
+        .replace(process.cwd(), '')
+        .replace('/core/modules', '')
+        .replace('/src/modules', '')
+        .replace('/core/opts', '')
+        .replace('/src/opts', '')
       var string = fs.readFileSync(file.path, enc)
       var document = parse5.parseFragment(string)
       for (var i in document.childNodes) {
@@ -25,12 +30,13 @@ const correctBowerPath = (dest) => {
             if (child.attrs[j].name === 'href') {
               var dependencyPath = path.resolve(path.dirname(file.path), child.attrs[j].value).replace(process.cwd(), '')
               if (dependencyPath.indexOf('/bower_components') === 0) {
-                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath
+                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '') + dependencyPath
               } else if (dependencyPath.indexOf('/core') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/core', '')
               } else if (dependencyPath.indexOf('/src') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/src', '')
               }
+              console.log(newPath, dependencyPath)
               document.childNodes[i].attrs[j].value = path.relative(path.dirname(newPath), dependencyPath)
               // console.log(path.relative(file.path, process.cwd() + '/dist/public/bower_components'), file.path, process.cwd() + '/dist/public')
               //  = child.attrs[j].value.replace(new RegExp('../bower_components/', 'g'), 'bower_components/')

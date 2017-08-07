@@ -15,6 +15,7 @@ gulp.task('build-dev', (done) => {
     'build-dist',
     'build-bower-components',
     'build-modules',
+    'build-opts',
     done
   )
 })
