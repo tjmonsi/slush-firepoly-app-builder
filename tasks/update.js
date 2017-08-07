@@ -3,12 +3,8 @@
 const gulp = require('gulp')
 const runSequence = require('run-sequence')
 
-gulp.task('default', (done) => {
+gulp.task('update', (done) => {
   runSequence(
-    'create-app',
-    'create-dev-config',
-    'create-package',
-    'create-bower',
     'copy-core-modules',
     'install-deps',
     done)
