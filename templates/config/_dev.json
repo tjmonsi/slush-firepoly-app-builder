@@ -1,0 +1,60 @@
+{
+  "app": {
+    "title": "<%= appName %>",
+    "shortTitle": "<%= appNameSlug %>",
+    "description": "<%= appDescription %>",
+    "baseHref": "<%= appBaseHref %>",
+    "analytics": "<%= appGoogleAnalytics %>",
+    "firebaseVersion": "<%= appFirebaseVersion %>",
+    "database": "dev",
+    "waitBeforeFetchingSameURLInRest": 60,
+    "sentryUrl": "<%= appSentryUrl %>",
+    "appVersion": "<%= appVersion %>",
+    "firebaseConfig": []
+  },
+  "theme": {
+    "src": "modules/default-theme",
+    "ignoreComponents": []
+  },
+  "modules": {
+    "default-theme": true,
+    "user-data": true,
+    "permission-data": true,
+    "example-module": true
+  },
+  "fragments": {
+    "example-home-page": "modules/example-module/pages/example-home-page.html",
+    "example-not-found-page": "modules/example-module/pages/example-not-found-page.html",
+    "example-not-authorized-page": "modules/example-module/pages/example-not-authorized-page.html",
+    "example-app-header": "modules/example-module/components/example-app-header.html",
+    "example-app-drawer": "modules/example-module/components/example-app-drawer.html"
+  },
+  "routing": {
+    "/": "example-home-page"
+  },
+  "httpCodes": {
+    "not-found": "example-not-found-page",
+    "not-authorized": "example-not-authorized-page"
+  },
+  "shellComponents": [
+    {
+      "node": "example-app-header",
+      "header": true,
+      "activate": true,
+      "attrs": []
+    },
+    {
+      "node": "example-app-drawer",
+      "drawer": true,
+      "activate": true,
+      "attrs": []
+    }
+  ],
+  "serviceWorker": {
+    "globIgnores": [],
+    "runtimeCaching": []
+  },
+  "hosting": {
+    "rewrites": []
+  }
+}
