@@ -75,14 +75,14 @@
       }});
       (() => {
         var __currentUsed = 0
-        Object.defineProperty(App.utils, 'checkStorage', { value: App.utils.checkStorage || function() {
+        Object.defineProperty(App.utils, 'checkStorage', { value: App.utils.checkStorage || function () {
           if (window.navigator && navigator.storage && navigator.storage.estimate) {
             return navigator.storage.estimate()
           } else if (window.navigator &&
             navigator.webkitTemporaryStorage &&
             navigator.webkitTemporaryStorage.queryUsageAndQuota &&
             typeof navigator.webkitTemporaryStorage.queryUsageAndQuota === 'function') {
-            return new Promise ((resolve, reject) => {
+            return new Promise((resolve, reject) => {
               navigator.webkitTemporaryStorage.queryUsageAndQuota(
                 (usedBytes, grantedBytes) => {
                   if (__currentUsed && App.__build !== 'prod') {
@@ -92,17 +92,16 @@
                   return resolve({
                     usage: usedBytes
                   })
-                }, reject )
+                }, reject)
             })
           } else {
             Promise.resolve({
-              type: "no_navigator_storage"
+              type: 'no_navigator_storage'
             })
           }
         }});
         App.utils.checkStorage()
       })()
-
 
       Object.defineProperty(App, '__dataRestStaleTime', { value: {{app.waitBeforeFetchingSameURLInRest}} })
       Object.defineProperty(App, '__firebaseFetch', { value: App.__firebaseFetch || {} })
@@ -154,7 +153,7 @@
               console.log('Please reload this page to allow the service worker to handle network operations.')
             }
           })
-        });
+        })
       }
     </script>
 

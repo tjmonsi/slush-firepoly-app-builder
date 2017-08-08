@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "<%= appName %>",
-    "shortTitle": "<%= appNameSlug %>",
+    "shortTitle": "<%= appNameUpperCamel %>",
     "description": "<%= appDescription %>",
     "baseHref": "<%= appBaseHref %>",
     "analytics": "<%= appGoogleAnalytics %>",

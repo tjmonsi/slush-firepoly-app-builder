@@ -19,6 +19,7 @@ gulp.task('build-dev', (done) => {
     'build-firebase-config',
     'build-shell',
     'build-index',
+    'build-404',
     done
   )
 })
