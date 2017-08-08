@@ -16,11 +16,6 @@
     "src": "modules/example-theme",
     "ignoreComponents": []
   },
-  "modules": {
-    "example-theme": true,
-    "example-module": true,
-    "example-data": true
-  },
   "fragments": {
     "example-home-page": "modules/example-module/pages/example-home-page.html",
     "example-not-found-page": "modules/example-module/pages/example-not-found-page.html",
@@ -51,7 +46,8 @@
   ],
   "serviceWorker": {
     "globIgnores": [],
-    "runtimeCaching": []
+    "runtimeCaching": [],
+    "globPatterns": []
   },
   "hosting": {
     "rewrites": []

@@ -33,7 +33,7 @@ gulp.task('build-404', (done) => {
     }
   })
 
-  gulp.src('./core/root/index.hbs')
+  gulp.src(data.utils.forceIndex)
     .pipe(hbStream)
     .pipe(rename(function (path) {
       path.basename = '404'

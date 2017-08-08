@@ -4,7 +4,7 @@ const install = require('gulp-install')
 const modules = ['./core/modules', './src/modules']
 
 gulp.task('install-deps', (done) => {
-  const installers = ['./bower.json', './package.json']
+  const installers = ['./bower.json', './package.json', './functions/package.json']
 
   for (var i in modules) {
     var core = modules[i]

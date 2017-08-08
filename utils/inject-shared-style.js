@@ -43,9 +43,10 @@ const injectSharedStyle = (data) => {
                   var config = data.config
                   var theme = data.theme
                   var link = parse5Utils.createNode('link')
+                  var href = newFileArray.join('/') + '/' + config.theme.src.replace('modules/', '') + '/' + theme.name + '-theme.html'
                   link.attrs = parse5Utils.toAttrs({
                     rel: 'import',
-                    href: newFileArray.join('/') + '/' + config.theme.src.replace('src/modules/', '').replace('core/modules', '') + '/' + theme.name + '-theme.html'
+                    href: href.replace(/^\.\//, '')
                   })
 
                   if (style.attrs.length > 0) {

@@ -4,6 +4,11 @@ const copySrc = require('../../utils/copy-src')
 
 gulp.task('update-src', (done) => {
   return runSequence(
-    copySrc,
+    'update-src-modules',
+    'update-src-opts',
+    'update-src-scripts',
+    'update-src-rules',
+    'update-src-service-worker',
+    'update-src-images',
     done)
 });

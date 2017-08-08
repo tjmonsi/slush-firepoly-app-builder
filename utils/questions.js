@@ -1,4 +1,5 @@
 const defaults = require('./defaults')
+const slugify = require('slugify')
 const _ = require('underscore.string')
 
 module.exports = [{
@@ -24,6 +25,10 @@ module.exports = [{
   message: 'What is the Firebase JS SDK Version of your project?',
   default: '4.2.0'
 }, {
+  name: 'firebaseHostId',
+  message: 'What is the Firebase Project ID for hosting?',
+  default: 'test-site'
+}, {
   name: 'appSentryUrl',
   message: 'What is the Sentry JS URL (for capturing error messages) of your project?',
 }, {
@@ -41,7 +46,7 @@ module.exports = [{
 }, {
   name: 'appRepo',
   message: 'What is the repo?',
-  default: `git://github.com/${defaults.userName}/${_.slugify(defaults.appName)}.git`
+  default: `git://github.com/${defaults.userName}/${slugify(defaults.appName).toLowerCase()}.git`
 }, {
   type: 'confirm',
   name: 'moveon',

@@ -1,7 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/utils/import-href.html">
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="../modules/app-router/app-router.html">
-<link rel="import" href="../modules/app-network-status/app-network-status.html">
+<link rel="import" href="../modules/polyapp-router/components/polyapp-router.html">
+<link rel="import" href="../modules/app-network-status/mixins/app-network-status-mixin.html">
 <link rel="import" href="../modules/firebase-property-mixin/mixins/firebase-property-mixin.html">
 <link rel="import" href="../opts/auth-functions.html">
 <link rel="import" href="../opts/firebase.html">
@@ -9,12 +10,12 @@
 
 <dom-module id="app-shell">
   <template>
-    <app-router>
-    </app-router>
+    <polyapp-router>
+    </polyapp-router>
   </template>
   <script>
     (() => {
-      class AppShell extends ((typeof window.App.Mixins.AuthFunctions === 'function') ? window.App.Mixins.AuthFunctions(window.App.Mixins.AppNetworkStatus(Polymer.Element)) : window.App.Mixins.AppNetworkStatus(Polymer.Element)) {
+      class AppShell extends ((typeof window.App.Mixins.AuthFunctions === 'function') ? window.App.Mixins.AuthFunctions(window.App.Mixins.AppNetworkStatusMixin(Polymer.Element)) : window.App.Mixins.AppNetworkStatus(Polymer.Element)) {
         static get is () { return 'app-shell' }
 
         constructor () {
@@ -34,7 +35,7 @@
 
         connectedCallback () {
           super.connectedCallback()
-          const router = this.shadowRoot.querySelector('app-router')
+          const router = this.shadowRoot.querySelector('polyapp-router')
           this.__setRoutes(router, this.__routes)
           this.__setComponents(router, this.__shellComponents)
           this.addEventListener('open-drawer', this.__boundOpenDrawer)
@@ -69,15 +70,9 @@
           }
         }
 
-        __setComponents (content, components) {
-          var componentsArray = []
-          for (var i in components) {
-            if (components[i].activate) {
-              componentsArray.push(App.utils.extends({}, components[i], { node: i }))
-            }
-          }
-          componentsArray.sort((p, q) => (p['.order'] - q['.order']))
+        __setComponents (content, componentsArray) {
           for (var j in componentsArray) {
+            if (!componentsArray[j]['.activate']) continue
             var node = document.createElement(componentsArray[j].node)
             for (var k in componentsArray[j]) {
               if (k !== 'node' && k !== '.order' && k !== '.header' && k !== '.drawer') {
@@ -113,7 +108,7 @@
                 reject(new Error('no link lazy-import found'))
               }
             }).catch((err) => {
-              if (ga) {
+              if (window.ga) {
                 ga('send', 'exception', {
                   exDescription: err.message,
                   exFatal: false

@@ -4,5 +4,5 @@ const copy = require('../../utils/force-copy')
 
 gulp.task('build-bower-components', (done) => {
   const dest = data.buildDest + '/bower_components'
-  copy(gulp.src('./bower_components/**'), dest, done)
+  copy(gulp.src(data.utils.bower), dest, done)
 })

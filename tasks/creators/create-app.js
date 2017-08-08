@@ -1,7 +1,6 @@
 'use strict'
 
 const gulp = require('gulp')
-const install = require('gulp-install')
 const slugify = require('slugify')
 const camel = require('camelcase')
 const uppercamel = require('uppercamelcase')
@@ -18,6 +17,7 @@ gulp.task('create-app', function (done) {
     answers.appNameSlug = slugify(answers.appName).toLowerCase()
     answers.appNameCamel = camel(answers.appName)
     answers.appNameUpperCamel = uppercamel(answers.appName)
+    answers.firebaseHostId = slugify(answers.firebaseHostId).toLowerCase()
 
     data.app = Object.assign({}, answers)
     done()

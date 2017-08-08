@@ -17,7 +17,18 @@ module.exports = {
   buildDest: './dist/public',
   build: 'dev',
   config,
-  theme
+  theme,
+  utils: {
+    shell: './core/shell/*.html',
+    opts: ['./core/opts/**/*.html', './core/opts/*.html', './src/opts/**/*.html', './src/opts/*.html'],
+    modules: ['./core/modules/**/*.*', './core/modules/*.*', './src/modules/**/*.*', './src/modules/*.*'],
+    index: './core/root/**.hbs',
+    forceIndex: './core/root/index.hbs',
+    bower: './bower_components/**',
+    coreScripts: ['./core/scripts/index.js'],
+    srcScripts: ['./src/scripts/index.js'],
+    databaseRules: './src/rules/database'
+  }
 }
 
 

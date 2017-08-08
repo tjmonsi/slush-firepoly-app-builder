@@ -30,14 +30,15 @@ const correctBowerPath = (dest) => {
           for (var j in child.attrs) {
             if (child.attrs[j].name === 'href') {
               var dependencyPath = path.resolve(path.dirname(file.path), child.attrs[j].value).replace(process.cwd(), '')
+              // console.log(dependencyPath)
               if (dependencyPath.indexOf('/bower_components') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath
               } else if (dependencyPath.indexOf('/core') === 0) {
-                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/core', '')
+                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath.replace('/core', '')
               } else if (dependencyPath.indexOf('/src') === 0) {
-                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/src', '')
+                dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath.replace('/src', '')
               }
-              // console.log(newPath, dependencyPath)
+              // console.log(newPath, dependencyPath, path.relative(path.dirname(newPath), dependencyPath))
               document.childNodes[i].attrs[j].value = path.relative(path.dirname(newPath), dependencyPath)
               // console.log(path.relative(file.path, process.cwd() + '/dist/public/bower_components'), file.path, process.cwd() + '/dist/public')
               //  = child.attrs[j].value.replace(new RegExp('../bower_components/', 'g'), 'bower_components/')

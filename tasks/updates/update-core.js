@@ -4,6 +4,11 @@ const copyCore = require('../../utils/copy-core')
 
 gulp.task('update-core', (done) => {
   return runSequence(
-    copyCore,
+    'update-core-modules',
+    'update-core-opts',
+    'update-core-scripts',
+    'update-core-root',
+    'update-core-shell',
+    'update-core-service-worker',
     done)
 });

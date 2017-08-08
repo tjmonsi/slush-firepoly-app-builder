@@ -24,28 +24,47 @@
     "test": "echo \"No tests\""
   },
   "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.6.0",
+    "browserify": "^14.4.0",
+    "css-slam": "^1.2.1",
+    "del": "^3.0.0",
     "gulp": "^3.6.2",
+    "gulp-babel": "^7.0.0",
     "gulp-conflict": "^0.1.1",
     "gulp-hb": "^6.0.2",
+    "gulp-html-minifier": "^0.1.8",
     "gulp-install": "^0.1.4",
     "gulp-options": "^1.1.1",
     "gulp-rename": "^1.2.0",
     "gulp-template": "^0.1.1",
+    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "iniparser": "^1.0.5",
     "inquirer": "^0.8.0",
     "lodash": "^4.17.4",
+    "merge-stream": "^1.0.1",
     "node-sass": "^4.5.3",
     "parse5": "^3.0.2",
     "parse5-utils": "^2.0.0",
+    "polymer-build": "^2.0.0",
     "run-sequence": "^2.1.0",
     "rxjs": "^5.4.2",
     "slugify": "^1.1.0",
     "slush": ">=1.0.0",
     "through2": "^2.0.3",
-    "underscore.string": "^2.3.3"
+    "underscore.string": "^2.3.3",
+    "workbox-build": "^1.2.0",
+    "workbox-routing": "^1.1.0",
+    "workbox-sw": "^1.1.0"
   },
   "keywords": [
     "slushgenerator"
-  ]
+  ],
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint-plugin-html": "^3.1.1",
+    "standard": "^10.0.3"
+  }
 }

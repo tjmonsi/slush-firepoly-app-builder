@@ -10,6 +10,8 @@ gulp.task('default', (done) => {
     'create-package',
     'create-bower',
     'update-core-src',
+    'update-functions',
+    'update-firebaserc',
     'install-deps',
     done)
 });

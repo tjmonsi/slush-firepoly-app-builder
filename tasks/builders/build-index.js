@@ -11,7 +11,7 @@ gulp.task('build-index', (done) => {
   }
   const config = data.config
   const dest = data.buildDest
-  
+
   if (config.theme.src.indexOf('modules') === 0 && fs.existsSync('./src/' + config.theme.src + '/root.scss')) {
     result = sass.renderSync({
       file: './src/' + config.theme.src + '/root.scss'
@@ -20,7 +20,7 @@ gulp.task('build-index', (done) => {
     result = sass.renderSync({
       file: config.theme.src + '/root.scss'
     })
-  } 
+  }
   const hbStream = hb({
     data: Object.assign({}, config, { build: data.build, version: data.version || '0.0.1', css: result.css.toString('utf8') }),
     helpers: {
@@ -32,8 +32,8 @@ gulp.task('build-index', (done) => {
       }
     }
   })
-  
-  gulp.src('./core/root/**.hbs')
+
+  gulp.src(data.utils.index)
     .pipe(hbStream)
     .pipe(rename(function (path) {
       path.extname = '.html'

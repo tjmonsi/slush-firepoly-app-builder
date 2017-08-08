@@ -40,15 +40,23 @@ gulp.task('build', (done) => {
   }
 
   return runSequence(
+    'build-clean',
     'build-dist',
     'build-bower-components',
     'build-modules',
+    'build-sass',
     'build-opts',
     'build-firebase-config',
     'build-shell',
     'build-index',
     'build-404',
+    'build-core-scripts',
+    'build-src-scripts',
     'build-firebase-json',
+    'build-database-rules',
+    'build-manifest',
+    'build-polymer',
+    'build-service-worker',
     done
   )
 })
