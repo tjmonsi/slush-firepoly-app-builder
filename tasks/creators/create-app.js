@@ -16,7 +16,7 @@ gulp.task('create-app', function (done) {
       return done(new Error('Closing the builder as of now'))
     }
     answers.appNameSlug = slugify(answers.appName).toLowerCase()
-    answers.appNameCamel = camel(answer.appName)
+    answers.appNameCamel = camel(answers.appName)
     answers.appNameUpperCamel = uppercamel(answers.appName)
 
     data.app = Object.assign({}, answers)

@@ -3,7 +3,7 @@ const runSequence = require('run-sequence')
 const copyCore = require('../../utils/copy-core')
 
 gulp.task('update-core', (done) => {
-  runSequence(
+  return runSequence(
     copyCore,
     done)
 });

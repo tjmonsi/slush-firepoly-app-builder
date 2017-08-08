@@ -28,7 +28,7 @@
           Object.defineProperty(this, `__${modelName}Database`, { value: App.__database || 'default' })
           Object.defineProperty(this, `__${modelName}Model`, { value: modelName })
           Object.defineProperty(this, `__${modelName}Actions`, { value: App.Actions[`${modelName}Model`] })
-          Object.defineProperty(this, `${modelName}Path`, {
+          Object.defineProperty(this, `__${modelName}Path`, {
             configurable: true,
             value: {
               data: `${this[`__${modelName}Database`]}/${this[`__${modelName}Model`]}/data`,

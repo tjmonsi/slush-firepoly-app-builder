@@ -4,8 +4,8 @@ const gulp = require('gulp')
 const runSequence = require('run-sequence')
 
 gulp.task('update', (done) => {
-  runSequence(
-    'copy-core-src',
+  return runSequence(
+    'copy-core',
     'install-deps',
     done)
 });
