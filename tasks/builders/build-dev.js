@@ -16,6 +16,9 @@ gulp.task('build-dev', (done) => {
     'build-bower-components',
     'build-modules',
     'build-opts',
+    'build-firebase-config',
+    'build-shell',
+    'build-index',
     done
   )
 })
