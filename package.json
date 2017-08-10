@@ -1,7 +1,7 @@
 {
   "name": "slush-polyapp-builder",
   "description": "A slush generator that builds a Polymer PWA that uses Firebase database, storage, functions, and hosting.",
-  "version": "0.0.2",
+  "version": "0.0.3-4",
   "homepage": "https://github.com/tjmonsi/slush-polyapp-builder",
   "author": {
     "name": "Toni-Jan Keith Monserrat",
@@ -28,6 +28,7 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
     "browserify": "^14.4.0",
+    "camelcase": "^4.1.0",
     "css-slam": "^1.2.1",
     "del": "^3.0.0",
     "gulp": "^3.6.2",
@@ -35,6 +36,7 @@
     "gulp-conflict": "^0.1.1",
     "gulp-hb": "^6.0.2",
     "gulp-html-minifier": "^0.1.8",
+    "gulp-if": "^2.0.2",
     "gulp-install": "^0.1.4",
     "gulp-options": "^1.1.1",
     "gulp-rename": "^1.2.0",
@@ -55,6 +57,7 @@
     "slush": ">=1.0.0",
     "through2": "^2.0.3",
     "underscore.string": "^2.3.3",
+    "uppercamelcase": "^3.0.0",
     "workbox-build": "^1.2.0",
     "workbox-routing": "^1.1.0",
     "workbox-sw": "^1.1.0"

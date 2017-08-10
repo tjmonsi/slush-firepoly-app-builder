@@ -51,17 +51,23 @@ gulp.task('build-service-worker', (done) => {
 
       var str =`
         importScripts("sw.js")
-        importScripts("workbox-routing.v1.1.0.js")
+        importScripts("workbox-routing.js")
         const router = new workbox.routing.Router()
         var app = JSON.parse('${JSON.stringify(config.app)}')
         var random = "${new Date().toString()}"
         importScripts("routing-sw.js")
         importScripts("routing-sw-src.js")`
 
-      fs.writeFileSync(
-        `${data.buildDest}/build/workbox-routing.v1.1.0.js`,
-        fs.readFileSync(`node_modules/workbox-routing/build/importScripts/workbox-routing.${data.build === 'prod' ? 'prod' : 'dev'}.v1.1.0.js`,
-        'utf8'), 'utf8')
+      if (fs.existsSync('node_modules/workbox-routing/build/importScripts/')) {
+        var dir = fs.readdirSync('node_modules/workbox-routing/build/importScripts/')
+        if (dir.length > 0) {
+          var version = dir[0].replace('workbox-routing.dev.', '').replace('.js', '').replace('workbox-routing.prod.', '')
+          fs.writeFileSync(
+            `${data.buildDest}/build/workbox-routing.js`,
+            fs.readFileSync(`node_modules/workbox-routing/build/importScripts/workbox-routing.${data.build === 'prod' ? 'prod' : 'dev'}.${version}.js`,
+            'utf8'), 'utf8')
+        }
+      }
 
       fs.writeFileSync(
         `${data.buildDest}/build/routing-sw.js`,
