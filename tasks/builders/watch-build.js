@@ -38,6 +38,12 @@ gulp.task('watch-build', (done) => {
   }, {
     files: data.utils.shell,
     tasks: ['build-shell']
+  }, {
+    files: [config, './src/modules/**', './src/modules/**'],
+    tasks: ['build-sass']
+  }, {
+    files: data.utils.images,
+    tasks: ['build-images']
   }]
 
   watchers.forEach((item) => {

@@ -12,9 +12,12 @@
   <template>
     <polyapp-router>
     </polyapp-router>
+
+    <polyapp-toast></polyapp-toast>
   </template>
   <script>
     (() => {
+      const messages = []
       class AppShell extends ((typeof window.App.Mixins.AuthFunctions === 'function') ? window.App.Mixins.AuthFunctions(window.App.Mixins.AppNetworkStatusMixin(Polymer.Element)) : window.App.Mixins.AppNetworkStatus(Polymer.Element)) {
         static get is () { return 'app-shell' }
 
@@ -38,6 +41,7 @@
           const router = this.shadowRoot.querySelector('polyapp-router')
           this.__setRoutes(router, this.__routes)
           this.__setComponents(router, this.__shellComponents)
+          this.__setToaster()
           this.addEventListener('open-drawer', this.__boundOpenDrawer)
           this.addEventListener('page-loading', this.__boundPageLoading)
           this.addEventListener('page-loaded', this.__boundPageLoaded)
@@ -48,6 +52,18 @@
           this.removeEventListener('open-drawer', this.__boundOpenDrawer)
           this.removeEventListener('page-loading', this.__boundPageLoading)
           this.removeEventListener('page-loaded', this.__boundPageLoaded)
+        }
+
+        showMessage (message, optTapHandler, optAction, optActionHandler, optDuration) {
+          if (this.shadowRoot.querySelector('polyapp-toast').showMessage) {
+            this.shadowRoot.querySelector('polyapp-toast').showMessage(message, optTapHandler, optAction, optActionHandler, optDuration)
+          } else {
+            messages.push({message, optTapHandler, optAction, optActionHandler, optDuration})
+          }
+        }
+
+        closeToast () {
+          this.shadowRoot.querySelector('polyapp-toast').close()
         }
 
         __setRoutes (router, routes, parentRoute, auth) {
@@ -89,34 +105,53 @@
               }
             }
             content.parentNode.insertBefore(node, content)
-
-            new Promise((resolve, reject) => {
-              var link = document.head.querySelector(`link[rel='lazy-import'][node='${node.nodeName.toLowerCase()}']`)
-              if (link) {
-                if (link.hasAttribute('href')) {
-                  Polymer.importHref(link.getAttribute('href'), (event) => {
-                    resolve(node.nodeName.toLowerCase(), event)
-                  }, (error) => {
-                    reject(new Error(`No file found: ${link.getAttribute('href')}`, {
-                      detail: error
-                    }))
-                  }, true)
-                } else {
-                  reject(new Error('link has no href attribute'))
-                }
-              } else {
-                reject(new Error('no link lazy-import found'))
-              }
-            }).catch((err) => {
-              if (window.ga) {
-                ga('send', 'exception', {
-                  exDescription: err.message,
-                  exFatal: false
-                })
-              }
-              console.error(err)
-            })
+            this.__lazyLoadComponent(node)
           }
+        }
+
+        __setToaster () {
+          this.__lazyLoadComponent(this.shadowRoot.querySelector('polyapp-toast')).then(() => {
+            messages.forEach((item) => {
+              const {message, optTapHandler, optAction, optActionHandler, optDuration} = item
+              if (this.shadowRoot.querySelector('polyapp-toast').showMessage) {
+                setTimeout(() => {
+                  this.shadowRoot.querySelector('polyapp-toast').showMessage(message, optTapHandler, optAction, optActionHandler, optDuration)
+                }, optDuration || 5000)
+              } else {
+                console.log(message)
+              }
+            })
+          })
+        }
+
+        __lazyLoadComponent (node) {
+          return new Promise((resolve, reject) => {
+            var link = document.head.querySelector(`link[rel='lazy-import'][node='${node.nodeName.toLowerCase()}']`)
+            if (link) {
+              if (link.hasAttribute('href')) {
+                Polymer.importHref(link.getAttribute('href'), (event) => {
+                  resolve(node.nodeName.toLowerCase(), event)
+                }, (error) => {
+                  reject(new Error(`No file found: ${link.getAttribute('href')}`, {
+                    detail: error
+                  }))
+                }, true)
+              } else {
+                reject(new Error('link has no href attribute: ' + node.nodeName.toLowerCase()))
+              }
+            } else {
+              reject(new Error('no link lazy-import found: ' + node.nodeName.toLowerCase()))
+            }
+          }).catch((err) => {
+            if (window.ga) {
+              ga('send', 'exception', {
+                exDescription: err.message,
+                exFatal: false
+              })
+            }
+            console.error(err)
+            return null
+          })
         }
 
         __openDrawer () {

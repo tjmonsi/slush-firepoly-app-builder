@@ -1,0 +1,8 @@
+<% _.forEach(dependencies, function(dep) { %><link rel="import" href="<%= dep %>"><%= '\n' %><% }); %>
+<dom-module id="<%= themeName %>-theme">
+  <template>
+    <style>
+      <%= style %>
+    </style>
+  </template>
+</dom-module>

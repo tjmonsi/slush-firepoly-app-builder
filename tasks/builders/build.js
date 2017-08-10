@@ -43,6 +43,7 @@ gulp.task('build', (done) => {
     'build-clean',
     'build-dist',
     'build-bower-components',
+    'build-images',
     'build-modules',
     'build-sass',
     'build-opts',

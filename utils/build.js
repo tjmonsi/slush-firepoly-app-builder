@@ -20,6 +20,7 @@ module.exports = {
   theme,
   utils: {
     shell: './core/shell/*.html',
+    images: './src/images/**',
     opts: ['./core/opts/**/*.html', './core/opts/*.html', './src/opts/**/*.html', './src/opts/*.html'],
     modules: ['./core/modules/**/*.*', './core/modules/*.*', './src/modules/**/*.*', './src/modules/*.*'],
     index: './core/root/**.hbs',

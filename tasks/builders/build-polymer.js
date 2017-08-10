@@ -16,7 +16,9 @@ gulp.task('build-polymer', (done) => {
 
   const sourcesHtmlSplitter = new HtmlSplitter()
   const cwd = process.cwd()
-  var fragments = []
+  var fragments = [
+    'modules/polyapp-toast/components/polyapp-toast.html'
+  ]
   for (var i in config.fragments) {
     fragments.push(config.fragments[i])
   }
@@ -25,7 +27,8 @@ gulp.task('build-polymer', (done) => {
     entrypoint: `index.html`,
     shell: `shell/app-shell.html`,
     sources: [
-      'modules/**/*'
+      'modules/**/*',
+      'images/**'
     ],
     fragments,
     extraDependencies: [
