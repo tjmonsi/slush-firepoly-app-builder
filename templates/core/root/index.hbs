@@ -75,14 +75,14 @@
       }});
       (() => {
         var __currentUsed = 0
-        Object.defineProperty(App.utils, 'checkStorage', { value: App.utils.checkStorage || function() {
+        Object.defineProperty(App.utils, 'checkStorage', { value: App.utils.checkStorage || function () {
           if (window.navigator && navigator.storage && navigator.storage.estimate) {
             return navigator.storage.estimate()
           } else if (window.navigator &&
             navigator.webkitTemporaryStorage &&
             navigator.webkitTemporaryStorage.queryUsageAndQuota &&
             typeof navigator.webkitTemporaryStorage.queryUsageAndQuota === 'function') {
-            return new Promise ((resolve, reject) => {
+            return new Promise((resolve, reject) => {
               navigator.webkitTemporaryStorage.queryUsageAndQuota(
                 (usedBytes, grantedBytes) => {
                   if (__currentUsed && App.__build !== 'prod') {
@@ -92,17 +92,16 @@
                   return resolve({
                     usage: usedBytes
                   })
-                }, reject )
+                }, reject)
             })
           } else {
             Promise.resolve({
-              type: "no_navigator_storage"
+              type: 'no_navigator_storage'
             })
           }
         }});
         App.utils.checkStorage()
       })()
-
 
       Object.defineProperty(App, '__dataRestStaleTime', { value: {{app.waitBeforeFetchingSameURLInRest}} })
       Object.defineProperty(App, '__firebaseFetch', { value: App.__firebaseFetch || {} })
@@ -145,17 +144,7 @@
       window.App.baseUrl = window.App.baseUrl || document.querySelector('base').href
 
       // Load and register pre-caching Service Worker
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register(window.App.baseUrl + 'service-worker.js').then(() => {
-            if (navigator.serviceWorker.controller) {
-              console.log('The service worker is currently handling network operations.')
-            } else {
-              console.log('Please reload this page to allow the service worker to handle network operations.')
-            }
-          })
-        });
-      }
+
     </script>
 
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
@@ -184,9 +173,6 @@
     <!-- Load your application shell -->
     <link rel="import" href="script.html">
     <link rel="import" href="shell/app-shell.html">
-    <link rel="import" href="default.html">
-    <link rel="import" href="default2.html">
-
 
     <!-- Add any global styles for body, document, etc. -->
     <style>
@@ -194,8 +180,11 @@
     </style>
 
     <!-- Add all lazy-imports here -->
+    <link rel="lazy-import" href="modules/polyapp-toast/components/polyapp-toast.html" node="polyapp-toast">
+    <link rel="prefetch" href="modules/polyapp-toast/components/polyapp-toast.html">
     {{#each fragments}}
     <link rel="lazy-import" href="{{this}}" node="{{@key}}">
+    <link rel="prefetch" href="{{this}}">
     {{/each}}
   </head>
   <body>
@@ -243,6 +232,59 @@
     <!-- Built with love using Polymer Starter Kit -->
     <script>
       Object.defineProperty(App, 'Shell', { value: document.querySelector('#app-shell') })
+
+      // Load and register pre-caching Service Worker
+      if ('serviceWorker' in navigator) {
+
+        navigator.serviceWorker.register(window.App.baseUrl + 'service-worker.js', {
+          scope: window.App.baseUrl
+        }).then((registration) => {
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing
+
+            installingWorker.onstatechange = function () {
+              switch (installingWorker.state) {
+                case 'installed':
+                  if (!navigator.serviceWorker.controller) {
+                    App.Shell.showMessage('Caching complete! Future visits will work offline.')
+                  }
+                  break;
+
+                case 'redundant':
+                  console.error(Error('The installing service worker became redundant.'));
+                  Raven.captureMessage('The installing service worker became redundant.');
+              }
+            }
+          }
+          if (navigator.serviceWorker.controller) {
+            console.log('The service worker is currently handling network operations.')
+          } else {
+            console.log('Please reload this page to allow the service worker to handle network operations.')
+          }
+        })
+
+        // Check to see if the service worker controlling the page at initial load
+        // has become redundant, since this implies there's a new service worker with fresh content.
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.onstatechange = function (event) {
+            if (event.target.state === 'redundant') {
+              // Define a handler that will be used for the next io-toast tap, at which point it
+              // be automatically removed.
+              var tapHandler = function () {
+                window.location.reload();
+              };
+
+              if (App.Shell.showMessage) {
+                App.Shell.showMessage('A new version of this app is available.', tapHandler, 'Refresh', null, 0); // duration 0 indications shows the toast indefinitely.
+              } else {
+                tapHandler(); // Force reload if user never was shown the toast.
+              }
+            }
+          };
+        }
+
+      }
     </script>
+    <script src="app.js" async></script>
   </body>
 </html>
