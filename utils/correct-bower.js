@@ -24,12 +24,13 @@ const correctBowerPath = (dest) => {
         .replace('/core/shell', '')
       var string = fs.readFileSync(file.path, enc)
       var document = parse5.parseFragment(string)
+      var dependencyPath
       for (var i in document.childNodes) {
         var child = document.childNodes[i]
         if (child.tagName === 'link') {
           for (var j in child.attrs) {
-            if (child.attrs[j].name === 'href') {
-              var dependencyPath = path.resolve(path.dirname(file.path), child.attrs[j].value).replace(process.cwd(), '')
+            if (child.attrs[j].name === 'href' && child.attrs[j].value.indexOf('https://') < 0) {
+              dependencyPath = path.resolve(path.dirname(file.path), child.attrs[j].value).replace(process.cwd(), '')
               // console.log(dependencyPath)
               if (dependencyPath.indexOf('/bower_components') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath
@@ -47,8 +48,8 @@ const correctBowerPath = (dest) => {
           }
         } else if (child.tagName === 'script') {
           for (var k in child.attrs) {
-            if (child.attrs[k].name === 'src') {
-              var dependencyPath = path.resolve(path.dirname(file.path), child.attrs[k].value).replace(process.cwd(), '')
+            if (child.attrs[k].name === 'src' && child.attrs[j].value.indexOf('https://') < 0) {
+              dependencyPath = path.resolve(path.dirname(file.path), child.attrs[k].value).replace(process.cwd(), '')
               if (dependencyPath.indexOf('/bower_components') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath
               } else if (dependencyPath.indexOf('/core/modules') === 0) {
