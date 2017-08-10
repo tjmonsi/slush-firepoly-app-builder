@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "<%= appName %>",
-    "shortTitle": "<%= appNameSlug %>",
+    "shortTitle": "<%= appNameUpperCamel %>",
     "description": "<%= appDescription %>",
     "baseHref": "<%= appBaseHref %>",
     "analytics": "<%= appGoogleAnalytics %>",
@@ -13,14 +13,8 @@
     "firebaseConfig": []
   },
   "theme": {
-    "src": "modules/default-theme",
+    "src": "modules/example-theme",
     "ignoreComponents": []
-  },
-  "modules": {
-    "default-theme": true,
-    "user-data": true,
-    "permission-data": true,
-    "example-module": true
   },
   "fragments": {
     "example-home-page": "modules/example-module/pages/example-home-page.html",
@@ -52,7 +46,8 @@
   ],
   "serviceWorker": {
     "globIgnores": [],
-    "runtimeCaching": []
+    "runtimeCaching": [],
+    "globPatterns": []
   },
   "hosting": {
     "rewrites": []
