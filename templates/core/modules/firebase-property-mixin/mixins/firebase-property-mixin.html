@@ -802,6 +802,7 @@
           if (this.__properties) {
             unbindProperty(name, this, this.__properties)
             bindProperty(name, this, this.__properties)
+            setListeners(name, this)
           }
         }
 
