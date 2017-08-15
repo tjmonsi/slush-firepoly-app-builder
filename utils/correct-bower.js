@@ -48,7 +48,7 @@ const correctBowerPath = (dest) => {
           }
         } else if (child.tagName === 'script') {
           for (var k in child.attrs) {
-            if (child.attrs[k].name === 'src' && child.attrs[j].value.indexOf('https://') < 0) {
+            if (child.attrs[k].name === 'src' && child.attrs[k].value.indexOf('https://') < 0) {
               dependencyPath = path.resolve(path.dirname(file.path), child.attrs[k].value).replace(process.cwd(), '')
               if (dependencyPath.indexOf('/bower_components') === 0) {
                 dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath
