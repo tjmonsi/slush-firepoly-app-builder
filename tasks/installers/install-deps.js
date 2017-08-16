@@ -10,12 +10,12 @@ gulp.task('install-deps', (done) => {
     var core = modules[i]
     if (fs.existsSync(core)) {
       var coreModules = fs.readdirSync(core)
-      for (var i in coreModules) {
-        if (fs.existsSync(`${core}/${coreModules[i]}/bower.json`)) {
-          if (!fs.existsSync(`${core}/${coreModules[i]}/.bowerrc`)) {
-            fs.writeFileSync(`${core}/${coreModules[i]}/.bowerrc`, JSON.stringify({directory: "../../../bower_components/", timeout: 120000}), 'utf8')
+      for (var j in coreModules) {
+        if (fs.existsSync(`${core}/${coreModules[j]}/bower.json`)) {
+          if (!fs.existsSync(`${core}/${coreModules[j]}/.bowerrc`)) {
+            fs.writeFileSync(`${core}/${coreModules[j]}/.bowerrc`, JSON.stringify({directory: "../../../bower_components/", timeout: 120000}), 'utf8')
           }
-          installers.push(`${core}/${coreModules[i]}/bower.json`)
+          installers.push(`${core}/${coreModules[j]}/bower.json`)
         }
       }
     }
