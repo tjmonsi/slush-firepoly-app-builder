@@ -58,6 +58,7 @@ gulp.task('build', (done) => {
     'build-manifest',
     'build-polymer',
     'build-service-worker',
+    'build-test',
     done
   )
 })

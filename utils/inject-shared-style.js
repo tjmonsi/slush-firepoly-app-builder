@@ -13,6 +13,9 @@ const injectSharedStyle = (data) => {
     if (file.isNull()) {
       return cb(null, file)
     }
+    if (file.path.indexOf('.test.html') > 0) {
+      return cb(null, file)
+    }
     if (!file.isDirectory()) {
       var string = file.contents.toString('utf8')
       var document = parse5.parseFragment(string)

@@ -19,8 +19,9 @@ module.exports = {
   config,
   theme,
   utils: {
-    shell: './core/shell/*.html',
+    shell: ['./core/shell/*.html', './core/shell/**/*.html'],
     images: './src/images/**',
+    test: ['./core/test/**', './src/test/**'],
     opts: ['./core/opts/**/*.html', './core/opts/*.html', './src/opts/**/*.html', './src/opts/*.html'],
     modules: ['./core/modules/**/*.*', './core/modules/*.*', './src/modules/**/*.*', './src/modules/*.*'],
     index: './core/root/**.hbs',
