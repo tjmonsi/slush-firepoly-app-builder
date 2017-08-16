@@ -13,7 +13,7 @@ gulp.task('install-deps', (done) => {
       for (var j in coreModules) {
         if (fs.existsSync(`${core}/${coreModules[j]}/bower.json`)) {
           if (!fs.existsSync(`${core}/${coreModules[j]}/.bowerrc`)) {
-            fs.writeFileSync(`${core}/${coreModules[j]}/.bowerrc`, JSON.stringify({directory: "../../../bower_components/", timeout: 120000}), 'utf8')
+            fs.writeFileSync(`${core}/${coreModules[j]}/.bowerrc`, JSON.stringify({directory: '../../../bower_components/', timeout: 120000}), 'utf8')
           }
           installers.push(`${core}/${coreModules[j]}/bower.json`)
         }
@@ -23,7 +23,7 @@ gulp.task('install-deps', (done) => {
 
   gulp.src(installers)
   .pipe(install({
-    bower: {allowRoot: true}
+    // bower: {allowRoot: true}
   }))
   .on('end', function () {
     done()

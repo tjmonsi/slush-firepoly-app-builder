@@ -38,11 +38,13 @@ const transform = (document, file, dest, newPath) => {
           dependencyPath = path.resolve(path.dirname(file.path), child.attrs[k].value).replace(process.cwd(), '')
           if (dependencyPath.indexOf('/bower_components') === 0) {
             dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/opts', '').replace('/shell', '') + dependencyPath
-          } else if (dependencyPath.indexOf('/core/modules') === 0) {
-            dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/core', '')
+          // } else if (dependencyPath.indexOf('/core/modules') === 0) {
+            // dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/core', '')
           } else if (dependencyPath.indexOf('/src/modules') === 0) {
             dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '') + dependencyPath.replace('/src', '')
-          } else if (dependencyPath.indexOf('/core/test') === 0) {
+          // } else if (dependencyPath.indexOf('/core/test') === 0) {
+          //   dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/shell', '') + dependencyPath.replace('/core', '').replace('/src', '')
+          } else if (dependencyPath.indexOf('/core') === 0) {
             dependencyPath = process.cwd() + '/' + dest.replace('./', '').replace('/modules', '').replace('/shell', '') + dependencyPath.replace('/core', '').replace('/src', '')
           }
           document.childNodes[i].attrs[k].value = path.relative(path.dirname(newPath), dependencyPath)
