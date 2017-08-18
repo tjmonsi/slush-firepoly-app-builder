@@ -10,6 +10,7 @@ gulp.task('build-index', (done) => {
     css: ''
   }
   const config = data.config
+  const theme = data.theme
   const dest = data.buildDest
 
   if (config.theme.src.indexOf('modules') === 0 && fs.existsSync('./src/' + config.theme.src + '/root.scss')) {
@@ -22,7 +23,7 @@ gulp.task('build-index', (done) => {
     })
   }
   const hbStream = hb({
-    data: Object.assign({}, config, { build: data.build, version: data.version || '0.0.1', css: result.css.toString('utf8') }),
+    data: Object.assign({}, config, { theme }, { build: data.build, version: data.version || '0.0.1', css: result.css.toString('utf8') }),
     helpers: {
       compileRouting: (options) => {
         return JSON.stringify(Object.assign({}, options.data.global.routing, options.data.global.httpCodes))
