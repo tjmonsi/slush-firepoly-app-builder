@@ -10,7 +10,7 @@ gulp.task('build-service-worker', (done) => {
     wbBuild.generateSW({
       cacheId: config.app.shortTitle,
       swDest: `${data.buildDest}/build/sw.js`,
-      // globPatterns: ['**/*.{js,css,html}', '**/*.json'].concat(data.config.serviceWorker.globPatterns),
+      globPatterns: ['**/*.{js,css,html}', 'images/**.{png,jpg,ico}', 'images/**/*.{png,jpg,ico}', '**/*.json'].concat(data.config.serviceWorker.globPatterns),
       globDirectory: `${data.buildDest}/build`,
       navigateFallback: '/index.html',
       navigateFallbackWhitelist: [
@@ -31,6 +31,14 @@ gulp.task('build-service-worker', (done) => {
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/maps.googleapis.com\/.*/,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /^https:\/\/fonts.googleapis.com\/.*/,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /^https:\/\/cdn.ravenjs.com\/.*/,
           handler: 'networkFirst'
         },
         {
