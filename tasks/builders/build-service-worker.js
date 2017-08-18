@@ -35,15 +35,19 @@ gulp.task('build-service-worker', (done) => {
         },
         {
           urlPattern: /^https:\/\/fonts.googleapis.com\/.*/,
-          handler: 'networkFirst'
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /^https:\/\/fonts.gstatic.com\/.*/,
+          handler: 'cacheFirst'
         },
         {
           urlPattern: /^https:\/\/cdn.ravenjs.com\/.*/,
-          handler: 'networkFirst'
+          handler: 'cacheFirst'
         },
         {
           urlPattern: /^https:\/\/www.gstatic.com\/firebasejs\/.*/,
-          handler: 'networkFirst'
+          handler: 'cacheFirst'
         },
         {
           urlPattern: /^https:\/\/www.google-analytics.com\/analytics.js/,
