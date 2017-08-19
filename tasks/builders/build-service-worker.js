@@ -10,12 +10,12 @@ gulp.task('build-service-worker', (done) => {
     wbBuild.generateSW({
       cacheId: config.app.shortTitle,
       swDest: `${data.buildDest}/build/sw.js`,
-      globPatterns: ['**/*.{js,css,html}', 'images/**.{png,jpg,ico}', 'images/**/*.{png,jpg,ico}', '**/*.json'].concat(data.config.serviceWorker.globPatterns),
+      globPatterns: ['**/*.{js,css,html}', 'images/**.{png,jpg,ico,gif}', 'images/**/*.{png,jpg,ico,gif}', '**/*.json'].concat(data.config.serviceWorker.globPatterns),
       globDirectory: `${data.buildDest}/build`,
       navigateFallback: '/index.html',
       navigateFallbackWhitelist: [
         [/^(?!(\/__)|(\/service-worker\.js))/]
-      ],
+      ].concat(data.config.serviceWorker.navigateFallbackWhitelist),
       globIgnores: [
         '404.html',
         'service-worker.js',
@@ -61,7 +61,7 @@ gulp.task('build-service-worker', (done) => {
     }).then(() => {
       gutil.log('Automated Service worker generated.')
 
-      var str =`
+      var str = `
         importScripts("sw.js")
         importScripts("workbox-routing.js")
         const router = new workbox.routing.Router()
